@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HACKII ADMIN</title>
+</head>
+<body>
+<h2>Admin Panel</h2>
+
+<input id="period" placeholder="Period"><br><br>
+
+<select id="color">
+<option value="GREEN">GREEN</option>
+<option value="RED">RED</option>
+</select><br><br>
+
+<input id="small" placeholder="Number A"><br><br>
+<input id="big" placeholder="Number B"><br><br>
+
+<button onclick="save()">SAVE</button>
+
+<script>
+async function save(){
+ await fetch('/api/admin/updatePrediction',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({
+     token:'OWNER_SECRET_KEY_9988',
+     period:document.getElementById('period').value,
+     color:document.getElementById('color').value,
+     numberSmall:document.getElementById('small').value,
+     numberBig:document.getElementById('big').value
+   })
+ });
+ alert('Updated');
+}
+</script>
+</body>
+</html>
